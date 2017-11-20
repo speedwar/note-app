@@ -1,0 +1,61 @@
+.tm-note {
+  height: 100%;
+  width: 100%;
+}
+
+.tm-note-form {
+  border-right: 1px solid $g-color-border;
+  float: left;
+  height: 100%;
+  padding: rem($g-spacing);
+  width: rem(250);
+}
+
+.tm-note-content {
+  display: flex;
+  height: 100%;
+}
+
+.tm-note-input {
+  border: 1px solid $g-color-border;
+  font-weight: $g-font-weight-light;
+  font-size: rem($g-font-size-small);
+  padding: rem($g-spacing-x-small);
+  width: 100%;
+}
+
+.tm-note-form__btn-group {
+  float: right;
+}
+
+.tm-note-card {
+  box-shadow: 2px 2px 0 0 $g-color-border;
+  background-color: $g-color-grey-100;
+  height: fit-content;
+  padding: rem($g-spacing);
+  margin: rem($g-spacing);
+  margin-right: 0;
+  width: rem(220);
+}
+
+
+.tm-note-card__title {
+  color: $g-color-text;
+  font-size: rem($g-font-size-x-small);
+  font-weight: $g-font-weight-bold;
+  text-transform: uppercase;
+}
+
+.tm-note-card__content {
+  color: $g-color-text;
+  font-size: rem($g-font-size-x-small);
+}
+
+.tm-note-card__control {
+  border-top: 1px solid $g-color-border;
+  padding-top: rem($g-spacing-x-small);
+
+  .tm-button {
+    margin-left: rem($g-spacing-x-small);
+  }
+}

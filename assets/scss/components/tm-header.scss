@@ -1,0 +1,11 @@
+.tm-header {
+  border-bottom: 1px solid $g-color-border;
+  padding: rem($g-spacing-x-small) rem($g-spacing);
+}
+
+.tm-header__title {
+  color: $g-color-text;
+  font-size: rem($g-font-size-x-small);
+  font-weight: $g-font-weight-bold;
+  text-transform: uppercase;
+}

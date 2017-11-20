@@ -1,0 +1,47 @@
+$tm-button-width: 84;
+$tm-button-height: 27;
+
+// [1] COMBAK: Button size should be flexible
+.tm-button {
+  border: 1px solid $g-color-border;
+  border-radius: 0;
+  color: $g-color-text;
+  font-size: rem($g-font-size-small);
+  font-weight: $g-font-weight-light;
+  padding: rem($g-spacing-x-small) rem($g-spacing-small);
+  //height: rem($pf-button-height); // [1]
+  //width: rem($pf-button-width); // [1]
+
+  &:hover {
+    background-color: $g-color-grey-100;
+  }
+
+  &:focus {
+    border: 1px solid $g-color-blue;
+    outline: 0;
+  }
+
+  &:active {
+    background-color: $g-color-grey-200;
+  }
+
+  &:disabled {
+    cursor: default;
+    pointer-events: none;
+    opacity: 0.6;
+  }
+}
+
+.tm-button--small {
+  background-color: $g-color-white;
+  padding: rem($g-spacing-2x-small);
+}
+
+.tm-button-icon {
+  background-color: transparent;
+
+  &:focus {
+    // NOTE: Discuss with designers
+    //outline: 1px dotted $g-color-blue;
+  }
+}

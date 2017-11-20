@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "module": "ES2015",
+    "jsx": "react",
+    "target": "ES6",
+    "moduleResolution": "node",
+    "strictNullChecks": true,
+    "noUnusedLocals": true,
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "include": [
+    "./src/**/*"
+  ],
+  "exclude": [
+    "assets",
+    "config",
+    "public",
+    "node_modules",
+    "routes"
+  ],
+  "compileOnSave": false,
+  "buildOnSave": false
+}
