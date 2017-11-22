@@ -4,6 +4,7 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const openBrowserPlugin = require('open-browser-webpack-plugin');
 const openBrowserPluginConfig = new openBrowserPlugin({
   url: 'http://localhost:8000',
@@ -15,11 +16,9 @@ const definePluginConfig = new webpack.DefinePlugin({
 
 /* No needed for now
 const webpackMiddleware = require("webpack-dev-middleware");
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-  template: './public/index.html',
-  filename: 'index.html',
-  inject: 'body'
+  title: 'Note application',
+  filename: 'index.html'
 });
 */
 

@@ -9,10 +9,13 @@
   "email" : "jimmy@purefrontend.com",
   "license": "UNLICENSED",
   "scripts": {
-    "server": "nodemon server.js",
-    "watch-css": "node-sass assets/scss/style.scss -o public/ --watch --recursive",
-    "start": "concurrently \"npm run server\" \"npm run build\" \"npm run watch-css\" \"npm run autoprefixer\"",
+    "server": "node server.js",
+    "server:watch": "nodemon server.js",
     "build": "webpack -w --config webpack.dev.config.js",
+    "build:css": "node-sass assets/scss/style.scss -o public/",
+    "watch:css": "node-sass assets/scss/style.scss -o public/ --watch --recursive",
+    "start": "concurrently \"npm run server\" \"npm run build:css\" \"npm run build\" \"npm run autoprefixer\"",
+    "start:dev": "concurrently \"npm run server\" \"npm run build\" \"npm run watch:css\"",
     "autoprefixer": "postcss -m true -u autoprefixer -r \"public/style.css\""
   },
   "dependencies": {
