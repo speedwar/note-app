@@ -8,6 +8,7 @@ class Props {
 class State {
   title: string;
   content: string;
+  error: boolean;
   data: any;
 }
 
@@ -17,6 +18,7 @@ export class TmForm extends React.Component<Props, State> {
     this.state = {
       title: '',
       content: '',
+      error: false,
       data: [
         {title: "title a string", content: "Lorem ipsum dolor sit amet, consectetue"},
         {title: "title another string", content: "nteger tincidunt. Cras dapibu"},
@@ -36,11 +38,19 @@ export class TmForm extends React.Component<Props, State> {
   onSubmit = (e) => {
     e.preventDefault();
     const { title, content } = this.state;
+
+    if (title === '' && content === '') {
+      this.setState({ error: true });
+      console.log('Error: one of the field must be entered');
+      return false;
+    }
+
     const data = this.state.data;
     const newNote = { title: title, content: content };
     // push() will mutate the state directly so used concat to create new array
     const newData = data.concat(newNote);
-    this.setState({ data:newData });
+
+    this.setState({ data: newData, title: '', content: '' });
   }
 
   handleEdit(e) {

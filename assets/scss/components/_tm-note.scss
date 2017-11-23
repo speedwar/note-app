@@ -13,7 +13,7 @@
 
 .tm-note-content {
   display: flex;
-  height: 100%;
+  flex-wrap: wrap;
 }
 
 .tm-note-input {
@@ -34,6 +34,7 @@
   height: fit-content;
   padding: rem($g-spacing);
   margin: rem($g-spacing);
+  margin-bottom: 0;
   margin-right: 0;
   width: rem(220);
 }
