@@ -18,9 +18,9 @@ export class TmForm extends React.Component<Props, State> {
       title: '',
       content: '',
       data: [
-        {id: 1, title: "title a string", content: "Lorem ipsum dolor sit amet, consectetue"},
-        {id: 2, title: "title another string", content: "nteger tincidunt. Cras dapibu"},
-        {id: 3, title: "title thrid string", content: "mcorper ultricies nis"},
+        {title: "title a string", content: "Lorem ipsum dolor sit amet, consectetue"},
+        {title: "title another string", content: "nteger tincidunt. Cras dapibu"},
+        {title: "title thrid string", content: "mcorper ultricies nis"},
       ]
     };
   }
@@ -35,8 +35,12 @@ export class TmForm extends React.Component<Props, State> {
 
   onSubmit = (e) => {
     e.preventDefault();
-    // get our form data out of state
-    //const { title, content } = this.state;
+    const { title, content } = this.state;
+    const data = this.state.data;
+    const newNote = { title: title, content: content };
+    // push() will mutate the state directly so used concat to create new array
+    const newData = data.concat(newNote);
+    this.setState({ data:newData });
   }
 
   handleEdit(e) {
@@ -52,7 +56,7 @@ export class TmForm extends React.Component<Props, State> {
 
     const renderNote = this.state.data.map((data, i) => {
       return (
-        <div className="tm-note-card" key={i}>
+        <div className="tm-note-card" key={i} data-note-id={data.id}>
           <div className="h-spacing-x-small">
             <span className="tm-note-card__title">{data.title || "Title"}</span>
           </div>
