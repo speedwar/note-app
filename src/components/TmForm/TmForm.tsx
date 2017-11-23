@@ -45,20 +45,21 @@ export class TmForm extends React.Component<Props, State> {
       return false;
     }
 
-    const data = this.state.data;
+    const array = this.state.data;
     const newNote = { title: title, content: content };
-    // push() will mutate the state directly so used concat to create new array
-    const newData = data.concat(newNote);
+    array.push(newNote);
 
-    this.setState({ data: newData, title: '', content: '' });
+    this.setState({ data: array, title: '', content: '' });
   }
 
   handleEdit(e) {
     // TODO: add note edit function
   }
 
-  handleDelete(e) {
-    // TODO: add note delete function
+  handleDelete(i: number) {
+    const array = this.state.data;
+    array.splice(i, 1);
+    this.setState({ data: array })
   }
 
   public render() {
@@ -79,14 +80,14 @@ export class TmForm extends React.Component<Props, State> {
                 <button
                   type="button"
                   className="tm-button tm-button--small"
-                  onClick={(e) => this.handleEdit(e)}
+                  onClick={() => this.state.data.splice(i, 1)}
                 >
                   Edit
                 </button>
                 <button
                   type="button"
                   className="tm-button tm-button--small"
-                  onClick={(e) => this.handleDelete(e)}
+                  onClick={this.handleDelete.bind(this, i)}
                 >
                   Delete
                 </button>
