@@ -50,36 +50,38 @@ export class TmForm extends React.Component<Props, State> {
   public render() {
     const { title, content } = this.state;
 
-    const card = (
-      <div className="tm-note-card">
-        <div className="h-spacing-x-small">
-          <span className="tm-note-card__title">{title || "Title"}</span>
-        </div>
-        <div className="h-spacing-x-small">
-          <span className="tm-note-card__content">{content || "Content"}</span>
-        </div>
-        <div className="tm-note-card__control">
-          <div className="l-grid">
-            <div className="l-grid__item l-grid__item--auto-margin-right">
-              <button
-                type="button"
-                className="tm-button tm-button--small"
-                onClick={(e) => this.handleEdit(e)}
-              >
-                Edit
-              </button>
-              <button
-                type="button"
-                className="tm-button tm-button--small"
-                onClick={(e) => this.handleDelete(e)}
-              >
-                Delete
-              </button>
+    const renderNote = this.state.data.map((data, i) => {
+      return (
+        <div className="tm-note-card" key={i}>
+          <div className="h-spacing-x-small">
+            <span className="tm-note-card__title">{data.title || "Title"}</span>
+          </div>
+          <div className="h-spacing-x-small">
+            <span className="tm-note-card__content">{data.content || "Content"}</span>
+          </div>
+          <div className="tm-note-card__control">
+            <div className="l-grid">
+              <div className="l-grid__item l-grid__item--auto-margin-right">
+                <button
+                  type="button"
+                  className="tm-button tm-button--small"
+                  onClick={(e) => this.handleEdit(e)}
+                >
+                  Edit
+                </button>
+                <button
+                  type="button"
+                  className="tm-button tm-button--small"
+                  onClick={(e) => this.handleDelete(e)}
+                >
+                  Delete
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    });
 
     return (
       <div className="tm-note">
@@ -110,9 +112,7 @@ export class TmForm extends React.Component<Props, State> {
           </form>
         </div>
         <div className="tm-note-content">
-          {card}
-          {card}
-          {card}
+          {renderNote}
         </div>
       </div>
     );
