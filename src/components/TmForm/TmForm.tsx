@@ -1,6 +1,6 @@
 import * as React from 'react';
-//import * as ReactDOM from "react-dom";
-//import cx from 'classnames';
+import { Modal }from 'react-bootstrap';
+import cx from 'classnames';
 
 class Props {
 }
@@ -9,6 +9,8 @@ class State {
   title: string;
   content: string;
   error: boolean;
+  noteIndex: number;
+  modalShow: boolean;
   data: any;
 }
 
@@ -19,6 +21,8 @@ export class TmForm extends React.Component<Props, State> {
       title: '',
       content: '',
       error: false,
+      noteIndex: -1,
+      modalShow: false,
       data: [
         {title: "title a string", content: "Lorem ipsum dolor sit amet, consectetue"},
         {title: "title another string", content: "nteger tincidunt. Cras dapibu"},
@@ -52,8 +56,26 @@ export class TmForm extends React.Component<Props, State> {
     this.setState({ data: array, title: '', content: '' });
   }
 
-  handleEdit(e) {
-    // TODO: add note edit function
+  handleEdit(i: number) {
+    this.setState({
+      modalShow: true,
+      noteIndex: i,
+      error: false
+    });
+  }
+
+  handleEditSubmit() {
+    const { title, content, noteIndex } = this.state;
+    let newNote = this.state.data.slice(); //copy the array
+
+    if (title === '' && content === '') {
+      this.setState({ error: true });
+      console.log('Error: one of the field must be entered');
+      return false;
+    }
+
+    newNote[noteIndex] = { title: title, content: content };
+    this.setState({ data: newNote,  modalShow: false, title: '', content: '' });
   }
 
   handleDelete(i: number) {
@@ -64,6 +86,47 @@ export class TmForm extends React.Component<Props, State> {
 
   public render() {
     const { title, content } = this.state;
+    let close = () => this.setState({ modalShow: false });
+
+    const renderModel = (
+      <div className="modal-container">
+        <Modal
+          show={this.state.modalShow}
+          onHide={close}
+          container={this}
+          aria-labelledby="contained-modal-title"
+        >
+          <Modal.Header>
+            <Modal.Title id="contained-modal-title">Edit Note</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <div className="h-spacing-x-small">
+              <input
+                type="text"
+                name="title"
+                className={cx({'tm-note-input': true, 'is-error':this.state.error})}
+                placeholder="title"
+                value={title}
+                onChange={this.onChange}
+              />
+            </div>
+            <div className="h-spacing-x-small">
+              <textarea
+                name="content"
+                className={cx({'tm-note-input': true, 'is-error':this.state.error})}
+                placeholder="content"
+                value={content}
+                onChange={this.onChange}
+              />
+            </div>
+          </Modal.Body>
+          <Modal.Footer>
+            <button className="tm-button" onClick={() => this.handleEditSubmit()}>Save</button>
+            <button className="tm-button" onClick={close}>Close</button>
+          </Modal.Footer>
+        </Modal>
+      </div>
+    );
 
     const renderNote = this.state.data.map((data, i) => {
       return (
@@ -80,7 +143,7 @@ export class TmForm extends React.Component<Props, State> {
                 <button
                   type="button"
                   className="tm-button tm-button--small"
-                  onClick={() => this.state.data.splice(i, 1)}
+                  onClick={this.handleEdit.bind(this, i)}
                 >
                   Edit
                 </button>
@@ -100,13 +163,14 @@ export class TmForm extends React.Component<Props, State> {
 
     return (
       <div className="tm-note">
+        {renderModel}
         <div className="tm-note-form">
           <form onSubmit={this.onSubmit}>
             <div className="h-spacing-x-small">
               <input
                 type="text"
                 name="title"
-                className="tm-note-input"
+                className={cx({'tm-note-input': true, 'is-error':this.state.error})}
                 placeholder="title"
                 value={title}
                 onChange={this.onChange}
@@ -115,7 +179,7 @@ export class TmForm extends React.Component<Props, State> {
             <div className="h-spacing-x-small">
               <textarea
                 name="content"
-                className="tm-note-input"
+                className={cx({'tm-note-input': true, 'is-error':this.state.error})}
                 placeholder="content"
                 value={content}
                 onChange={this.onChange}

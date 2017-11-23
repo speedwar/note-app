@@ -19,6 +19,7 @@
     "autoprefixer": "postcss -m true -u autoprefixer -r \"public/style.css\""
   },
   "dependencies": {
+    "@types/react-bootstrap": "^0.31.8",
     "@types/history": "4.6.1",
     "@types/node": "8.0.47",
     "@types/react": "16.0.19",
@@ -29,6 +30,7 @@
     "@types/redux-thunk": "2.1.0",
     "history": "^4.7.2",
     "react": "16.0.0",
+    "react-bootstrap": "^0.31.5",
     "react-dom": "16.0.0",
     "react-redux": "^5.0.6",
     "react-redux-typescript": "^2.3.0",

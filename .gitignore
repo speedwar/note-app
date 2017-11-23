@@ -16,16 +16,4 @@ Thumbs.db
 /node_modules
 
 # Dist #
-/dist
-/public/
 .webpack.json
-
-# Doc #
-/doc/
-
-# IDE #
-.idea/
-*.swp
-
-# ts compiler temporary files
-/src/tmp

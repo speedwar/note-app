@@ -22,6 +22,10 @@
   font-size: rem($g-font-size-small);
   padding: rem($g-spacing-x-small);
   width: 100%;
+
+  &.is-error {
+    border-color: $g-color-danger;
+  }
 }
 
 .tm-note-form__btn-group {
@@ -55,8 +59,4 @@
 .tm-note-card__control {
   border-top: 1px solid $g-color-border;
   padding-top: rem($g-spacing-x-small);
-
-  .tm-button {
-    margin-left: rem($g-spacing-x-small);
-  }
 }
